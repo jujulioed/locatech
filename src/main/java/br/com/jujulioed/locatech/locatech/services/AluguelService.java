@@ -4,6 +4,7 @@ import br.com.jujulioed.locatech.locatech.dtos.AluguelRequestDTO;
 import br.com.jujulioed.locatech.locatech.entities.Aluguel;
 import br.com.jujulioed.locatech.locatech.repositories.AluguelRepository;
 import br.com.jujulioed.locatech.locatech.repositories.VeiculoRepository;
+import br.com.jujulioed.locatech.locatech.services.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -27,7 +28,8 @@ public class AluguelService {
     }
 
     public Optional<Aluguel> findAluguelById(Long id) {
-        return this.aluguelRepository.findById(id);
+        return Optional.ofNullable(this.aluguelRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Aluguel não encontrado")));
     }
 
     public void saveAluguel(AluguelRequestDTO aluguel) {
