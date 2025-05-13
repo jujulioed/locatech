@@ -50,7 +50,8 @@ public class PessoaRepositoryImp implements PessoaRepository {
     @Override
     public Integer update(Pessoa pessoa, Long id) {
         return this.jdbcClient
-                .sql("UPDATE pessoas SET nome = :nome, cpf = :cpf, telefone = :telefone, email = :email")
+                .sql("UPDATE pessoas SET nome = :nome, cpf = :cpf, telefone = :telefone, email = :email WHERE id = :id")
+                .param("id", id)
                 .param("nome", pessoa.getNome())
                 .param("cpf", pessoa.getCpf())
                 .param("telefone", pessoa.getTelefone())

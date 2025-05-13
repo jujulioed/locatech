@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@RestController
+@RequestMapping("/alugueis")
 public class AluguelController {
     private static final Logger logger = LoggerFactory.getLogger(AluguelController.class);
 
