@@ -3,6 +3,7 @@ package br.com.jujulioed.locatech.locatech.controllers;
 import br.com.jujulioed.locatech.locatech.dtos.AluguelRequestDTO;
 import br.com.jujulioed.locatech.locatech.entities.Aluguel;
 import br.com.jujulioed.locatech.locatech.services.AluguelService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -46,7 +47,7 @@ public class AluguelController {
 
     @PostMapping
     public ResponseEntity<Void> saveAluguel(
-            @RequestBody AluguelRequestDTO aluguel
+            @Valid @RequestBody AluguelRequestDTO aluguel
     ){
         logger.info("POST =>  /alugueis");
         this.aluguelService.saveAluguel(aluguel);
